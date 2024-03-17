@@ -1,0 +1,11 @@
+(1) UI 개요
+1. UI(User Interface) 개념
+넓은 으미: 사용자와 시스템 사이에서 의사소통할 수 있도록 고안된 무리적, 가상의 매개체 
+좁은 의미: 정보기기나 소프트웨어의 화면 등에서 사람이 접하게 되는 호ㅏ면 
+(UX : 사용자 경험)
+
+2. UI 유형
+* CLI (Command Line Interface)
+* GUI (Graphical user Interface) : 마우스나 전자펜 
+* NUI (Natural User Interface) :직관적 반응 / 키보드 마우스 없이 신체 부위이용 
+* OUI (Organic User Interface) :유기적 상호작용기반 : 현실에 존재하는 모든 사물이 입출력장치로 변화
