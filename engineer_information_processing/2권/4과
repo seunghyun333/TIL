@@ -128,3 +128,29 @@ System.out.printf() : 변환문자를 사용하여 출력
 오버로딩 : 이름같고 매개변수 다르게 
 오버라이딩 : 상속 하위 클래스에서 재정의  
 --------------------
+제어문 
+if, if/else, if/else if/else 
+삼항연산자 k = (i>j)?(i+j);(i-j);
+switch~case
+switch(조건값)
+{ case 값1 : 
+   조건값이 1일 때 실행하는 명령문 ;
+   break;
+  case 값2 : 
+   조건값이 2일 때 실행하는 명령문 ;
+   break;
+
+   default:
+    값
+    break; }
+
+while(조건식)
+{ 명령문 1; 
+  명령문 n;}
+
+do(조건식)
+{ 명령문 1; 
+  명령문 n;}
+while(조건식)
+{ 명령문 1; 
+  명령문 n;}
