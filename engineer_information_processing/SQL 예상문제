@@ -1,0 +1,20 @@
+1. 스키마는 사용자나 개발자의 관점에서 필요로 하는 데이터 베이스의 논리적 구조를 나타낸 외부스키마, 데이터 베이스의 전체적인 논리적 구조를 나타낸 개념스키마, 물리적 저장장치의 관점에서 보는 데이터베이스의 구조를 나타낸 내부 스키마가 있다.
+2. CREATE INDEX '사번인덱스' ON 사원(사번);
+3. CREATE TABLE 사람(  
+          이름 VARCHAR(10), 성별 CHAR(1) CHECK(성별 = 'M' OR 'F'
+    );
+4. ALTER TALBE 사원 ADD 전화번호 VARCHAR(11); / ALTER TABLE 테이블명 ADD 컬럼명 데이터타입 [제약조건];
+5. CREATE VIEW 사원 뷰 AS SELECT 사번, 이름 FROM 사원 WHERE 성별 ='M';  / CREATE VIEW [VIEW NAME] AS [QUERY]; 
+6. SELECT DISTINCT 전공 FROM 학생;  
+7. SELECT 학번 FROM 학생 WHERE 이름 LIKE '이%';
+8. SELECT 주소 FROM 학생 WHERE 주소 IS NOT NULL;
+9. SELECT * FROM 교수 WHERE 전공 IN('컴퓨터공학','전자공학');
+10. SELECT 이름 FROM 고객 WHERE 성별 = '남' AND 나이 BETWEEN 50 AND 59;
+11. SELECT * FROM 성적 ORDER BY 성적 DESC;
+12. SELECT A.책번호, A.책명, B.책번호, B.가격 
+      FROM 도서 A LEFT JOIN ON 도서가격 B
+      ON A.책번호 = B.책번호;
+13. UNION ALL : 중복허용
+14. INSERT INTO EMPLOYEE VALUES('홍길동', 24, 300);
+15. DELECT FROM EMPLOYEE WHERE SALARY <= 300;
+16. GRANT UPDATE ON 학생 TO 장길산; / GRANT 권한 ON 테이블 TO 사용자;
