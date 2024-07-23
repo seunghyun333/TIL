@@ -1,0 +1,32 @@
+기출문제
+
+1. SELECT 과목이름, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수
+  FROM 성적
+  GROUP BY 과목이름 HAVING AVG(점수) >= 90;
+2. SELECT 학과, COUNT(학과)AS 학과별튜플수 
+  FROM 학생
+  GROUP BY 학과;
+3. 1
+4. 복수의 행을 출력하는 SQL문을 사용하여 제품 테이블에서 H라는 제조사의 모든 제품의 단가보다 비싼 단가의 상푸명, 단가, 제조사를 출력하는 SQL구문
+  SELECT 상푸명, 단가, 제조사
+    FROM 제품
+  WHERE 단가 > ALL (SELECT 단가 FROM 제품 WHERE 제조사='H';
+5. SELECT 과목, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수 
+  FROM 성적 
+  GROUP BY 과목
+  HAVING AVG(점수)>=90;
+
+
+  예상문제
+  1. SELECT 부서, AVG(급여) AS 급여
+    FROM 급여 
+    GROUP BY 부서;
+
+  2. SELECT 부서, SUM(급여) AS 급여
+    FROM 급여
+    GROUP BY 부서, 직책;
+
+  3. SELECT 이름 
+    FROM 학생
+    GROUP BY 이름
+    HAVING AVG(성적) > 4.0;
