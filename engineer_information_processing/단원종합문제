@@ -14,3 +14,8 @@
 4. CREATE TABLE 사람 (
       이름 VARCHAR(10),
       생년월일 CHAR(8) NOT NULL);
+
+5. CREATE VIEW 학생뷰 AS SELECT 학번, 이름 FROM 학생 WHERE 전공 = '전산';
+
+6. CREATE INDEX 학번인덱스 ON 학생(학번);
+
