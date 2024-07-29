@@ -1,0 +1,161 @@
+1. 데이터베이스 기본
+[기출문제]
+1. 트랜잭션의 특성 중 일관성, 지속성 외 2개 특성 : 원자성, 격리성 
+2. 원자성이란 : 트랜잭션을 구성하는 연산 전체가 모두 정상적으로 실행되거나 모두 최소되어야 하는 성질, 트랜잭션의 연산 전체가 성공 또는 실패 되어야하는 성질 
+  일관성 : 시스템이 가지고 있는 고정요소는 트랜잭션 수행 전과 트랙젝션 수행 완료 후의 상태가 같아야하는 성질 
+  격리성 : 동시에 실행되는 트랜잭션들이 서로 영향을 미치지 않아아 한다는 성질 
+  영속성 : 성공이 완료된 트랜잭션의 결과는 영속적으로 데이터베이스에 저장되어야 한다는 성질 
+3. 트랜잭션 Rollback : 오류가 발생했을 때 오류 이전의 특정시점 상태로 되돌려주는 제어어
+  커밋 : 트랜잭션을 메모리에 영구적으로 저장하는 제어어
+  체크포인트 : 롤백을 위한 시점을 지정하는 제어어 
+4. Redo : 장애 발생 전 DB로 복구하는 기법으로 디스크에 저장된 로그를 분석하여 트랜잭션의 시작과 완료에 대한 기록이 있는 트랜잭션들의 작업을 재실행하는 기법 
+  Undo : 장애시 디스크에 저장된 로그를 분석하여 트랜잭션의 시작은 있지만, 완료 기록이 없는 트랜잭션들이 작업한 변경 내용을 모두 최소하는 기법 
+5. 로킹 : 같은 자원을 액세스하는 다중 트랜잭션 환경에서 DB의 일관성과 무결성을 유지하기 위해 트랜잭션의 순차적 진행을 보장하는 직렬화 기법
+6. DISTINCT 중복 제거 
+7. SELECT 학번, 이름 WHERE 학년 IN (3,4);
+8. 즉각 갱신 회복 기법 : 데이터베이스의 회복 기법 중 Rollback 시 Redo, Undo 가 모두 실행되는 트랜잭션 처리법으로 트랜잭션 수행 중 갱신 결과를 바로 DB에 반영하는 기법 
+9. CREATE INDEX IDX_NAME ON STUDENT(NAME);
+10. DELETE FROM 학생 WHERE 이름 = '민수';
+11. (인덱스)는 데이터베이스에서 (키값,주소)형태의 자료구조이다. 데이터베이스 파일 구조에는 순차,(인덱스),해싱접근 방법이 있다. 
+12. DB스키마 : 데이터베이스의 구조, 제약조건 등의 정보를 담고 있는 기본적인 구조 
+  도메인: 하나의 속성이 가질 수 있는 원자값들의 집합, 속성의 데이터 타입과 크기, 제약조건 등의 정보 
+  테이블 : 데이터 저장 공간
+  뷰 : 하나 이상의 물리 테이블에서 유도되는 가상의 테이블 
+  인덱스 : 검색을 빠르게 하기 위한 데이터 구조 
+13. ALTER TABLE 학생 ADD 주소 VARCHAR(20);
+14. JOIN ON 
+15. UPDATE 회원 SET 전화번호 = '010-14' WHERE 회원번호 ='N4';
+16. '이%', 내림차순 DESC, [0-5]%, [^0-5]% : 0-5 사이 숫자로 싲가하지 않는 문자열 , _구% : 두 번째 위치에 '구'가 들어가는 문자열 
+17. SELECT NAME, SCORE FROM 성적 ORDER BY SCORE DESC;
+18. SELECT COUNT(*) CNT FROM SOO CROSS JOIN JEBI WHERE SOO.NAME LIKE JEBI.RULE; 
+19. GRANT : 관리자(DBA)가 사용자에게 데이터베이스에 대한 권한을 부여하는 명령어. / REVOKE: 관리자(DBA)가 사용자에게 부여했던 권한을 회수하는 명령어 
+20. SELECT COUNT(COL2) FROM TB WHERE COL1 IN(2,3) OR COL2 IN (3,5); / COUNT(컬럼명) : NULL 제외 COUNT, COUNT(*) NULL 포함 카운트 
+21. DISTINCT : 중복제거 / CASCADE : 참조된 데이터도 삭제 
+22. DELETE FROM 학생 WHERE 이름 = '민수';
+23. 외부 스키마는 사용자나 개발자의 관점에서 필요로 하는 데이터베이스의 논리적 구조이고, 사용자 뷰를 나타내며, 서브스키마로 불린다. 
+    개념 스키마는 데이터 베이스의 전체적인 논리적 구조이다. 그리고 전체적인 뷰를 나타내고, 개체 간의 관계, ㄱ제약조건, 접근 권한, 무결성, 보안에 대해 정의한다. 
+    내부 스키마는 물리적 저장 장치의 관점에서 보는 데이터 베이스 구조이고, 실제로 데이터베이스에 저장될 레코드의 형식을 정의한다. 그리고 데이터 항목의 표현 방법, 내부 레코드의 물리적 순서 등을 표현한다.
+24. DROP VIEW soojebi CASCADE;  참조하는 테이블도 연쇄적으로 제거. 
+25. INSERT INTO 학생 VALUES (9830287, '한국산', 3, '경영학개론', '050-1234-1234');
+
+[예상문제]
+1. 스키마는 사용자나 개발자의 관점에서 필요로 하는 데이터 베이스의 논리적 구조를 나타낸 외부스키마, 데이터 베이스의 전체적인 논리적 구조를 나타낸 개념스키마, 물리적 저장장치의 관점에서 보는 데이터베이스의 구조를 나타낸 내부 스키마가 있다.
+2. CREATE INDEX '사번인덱스' ON 사원(사번);
+3. CREATE TABLE 사람(  
+          이름 VARCHAR(10), 성별 CHAR(1) CHECK(성별 = 'M' OR 'F'
+    );
+4. ALTER TALBE 사원 ADD 전화번호 VARCHAR(11); / ALTER TABLE 테이블명 ADD 컬럼명 데이터타입 [제약조건];
+5. CREATE VIEW 사원 뷰 AS SELECT 사번, 이름 FROM 사원 WHERE 성별 ='M';  / CREATE VIEW [VIEW NAME] AS [QUERY]; 
+6. SELECT DISTINCT 전공 FROM 학생;  
+7. SELECT 학번 FROM 학생 WHERE 이름 LIKE '이%';
+8. SELECT 주소 FROM 학생 WHERE 주소 IS NOT NULL;
+9. SELECT * FROM 교수 WHERE 전공 IN('컴퓨터공학','전자공학');
+10. SELECT 이름 FROM 고객 WHERE 성별 = '남' AND 나이 BETWEEN 50 AND 59;
+11. SELECT * FROM 성적 ORDER BY 성적 DESC;
+12. SELECT A.책번호, A.책명, B.책번호, B.가격 
+      FROM 도서 A LEFT JOIN ON 도서가격 B
+      ON A.책번호 = B.책번호;
+13. UNION ALL : 중복허용
+14. INSERT INTO EMPLOYEE VALUES('홍길동', 24, 300);
+15. DELECT FROM EMPLOYEE WHERE SALARY <= 300;
+16. GRANT UPDATE ON 학생 TO 장길산; / GRANT 권한 ON 테이블 TO 사용자;
+
+2. SQL응용
+[기출문제]
+1. SELECT 과목이름, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수
+  FROM 성적
+  GROUP BY 과목이름 HAVING AVG(점수) >= 90;
+2. SELECT 학과, COUNT(학과)AS 학과별튜플수 
+  FROM 학생
+  GROUP BY 학과;
+3. 1
+4. 복수의 행을 출력하는 SQL문을 사용하여 제품 테이블에서 H라는 제조사의 모든 제품의 단가보다 비싼 단가의 상푸명, 단가, 제조사를 출력하는 SQL구문
+  SELECT 상푸명, 단가, 제조사
+    FROM 제품
+  WHERE 단가 > ALL (SELECT 단가 FROM 제품 WHERE 제조사='H';
+5. SELECT 과목, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수 
+  FROM 성적 
+  GROUP BY 과목
+  HAVING AVG(점수)>=90;
+
+[예상문제]
+  1. SELECT 부서, AVG(급여) AS 급여
+    FROM 급여 
+    GROUP BY 부서;
+
+  2. SELECT 부서, SUM(급여) AS 급여
+    FROM 급여
+    GROUP BY 부서, 직책;
+
+  3. SELECT 이름 
+    FROM 학생
+    GROUP BY 이름
+    HAVING AVG(성적) > 4.0;
+
+3. SQL 활용 및 최적화 
+[예상문제]
+1. 데이터베이스 시스템에서 삽입, 개신, 삭제 드으이 이벤트가 발생할 때마다 관련 작업이 자동으로 수행되는 절차형 SQL은 무엇인가? 
+  => 트리거
+* 프로시저 : 일련의 쿼리들을 마치 하나의 함수처럼 실행하기 위한 쿼리의 집합
+* 사용자 정의 함수 : 일련의 SQL 처리를 수행하고, 수행결과를 단일 값으로 반환할 수 있는 절차형 SQL
+
+2. SQL을 가장 빠르고 효율적으로 수행할 최적의 경로를 생성해주는 DBMS 내부의 핵심엔진 : 옵티마이저 
+
+
+
+[단원종합문제]
+1. 커밋 : 트랜잭션을 메모리에 영구적으로 저장하는 제어어 
+  롤백 : 오류가 발생했을 때 오류 이전의 특정 시점(CHECK POINT) 상태로 되돌려주는 제어어
+  체크포인트 : ROLLBACK을 위한 시점을 지정하는 제어어
+2.  200, 3, 1
+3. ALTER TABLE 사원 DROP 생년월일; 
+4. CREATE TABLE 사람 (
+      이름 VARCHAR(10),
+      생년월일 CHAR(8) NOT NULL);
+
+5. CREATE VIEW 학생뷰 AS SELECT 학번, 이름 FROM 학생 WHERE 전공 = '전산';
+
+6. CREATE INDEX 학번인덱스 ON 학생(학번);
+
+7. CREATE TABLE 교수
+  ( 교번 VARCHAR(10) PRIMARY KEY,
+    사이즈 VARCHAR(10),
+    임용일 VARCHAR(8) NOT NULL);
+
+8. ALTER TABLE 성적 ADD 학점 VARCHAR(4) NOT NULL; 
+9. SELECT 학번, 이름 FORM 학생 WHERE 학과 = "전산과";
+10. 11- 17
+11. SELECT 부서, SUM(급여) AS 급여합계 FROM 급여 GROUP BY 급여 HAVING SUM(급여) >= 6000;
+12. SELECT 이름, 과목, 학점 FROM 성적 ORDER BY 학점 DESC, 이름 ASC;
+13. SELECT A.책번호, A.책명, B.가격 
+    FROM 도서 A INNER JOIN 도서가격 B
+    ON A.책번호 = B.책번호
+14. SELECT A.책번호 AS A.책번호, A.책명 AS A.책명, B.책번호 AS B.책번호, B.가격 AS B.가격
+    FROM 도서 A FULL OUTER JOIN 도서가격 B
+    ON A.책번호 = B.책번호;
+15. SELECT 가격
+    FROM A
+   WHERE IN (SELECT MAX(가격) FROM 도서가격) A ;
+
+=> SELECT MAX(가격) AS 가격 FROM 도서가격 WHERE 책번호 IN (SELECT 책번호 FROM 도서 WHERE 책명='자료구조');
+
+16. INERT INTO 학생 (학번, 성명, 학년, 수강과목) VALUES (3000, 장길산, 3, 수학);
+
+17. UPDATE 학생 SET 수강과목 = '영어' WHERE 학번 = 1000;
+
+18. DELETE FROM 학생 WHERE 학번 = 3000;
+
+19. GRANT SELECT ON 사원 TO 홍길동;
+
+20. REVOKE UPDATE ON 학생 FROM 장길산; 
+
+21. AVG, COUNT
+22. UPDATE EMPLYEE SET SALARY = 250 WHERE AGE < = 25;
+23. REVOKE SELECT ON 학생 FROM 홍길동
+24. 프로시저
+25. 트리거
+26. 통계 정보가 없는 상태에서 사전 등록된 규칙에 따라 질의실행 계획을 선택하는 옵티마이저인 "규칙기반 옵티마이저(RBO)"와 
+  통계 정보로부터 모든 접근 경로를 고려한 질의실행 계획을 선택하는 오티마이저인 "비용기반 옵티마이저(CBO)가 있다.
+
+28. OLAP 는 의사결정 지원 시스템으로, 사용자가 동일한 다양한 방식으로 바라보면서 다차원 데이터 분석을 할 수 있또록 도와주는 기술
+    OLTP 는 데이터웨어하우스에서 데이터 소스를 제공하고, OLAP는 해당 데이터를 분석한다. 
