@@ -47,6 +47,63 @@ COUNT(*) : NULL 포함
 개념스키마 : 데이터베이스의 전체적인 논리적 구조, 전체적인 뷰, 관계, 조건, 권한, 무결성, 보안에 대해 정의
 내부스키마 : 물리적 저장 장치의 관점에서 , 실제로 저장될 레코드의 형식 정의하고 저장, 데이터 항목의 표현 방법, 내부 레크드의 물리적 순서등을 표현 
 
-CASCADE / RESTRICT 
+CASCADE 참조하는 테이블까지 연쇄적으로 제거 / RESTRICT 다른 테이블이 삭제할 테이블을 참조 중이면 제거하지 않는 옵션 
 
+INSERT INTO 학생 VALUE (9830287, '한국산', 3, '경영학개론', '050-1234-1234);
 
+UNION(중복X), UNION ALL(중복 O)
+
+외부/개념/내부 스키마
+
+CREATE INDEX 사번인덱스 ON 사번(사번);
+
+CREATE TABLE 사람 (이름 VARCHAR(10), 성별 CHAR(1) CHECK (성별='M' OR 성별='F'));
+
+ALTER TABLE 사원 ADD 전화번호 VARCHAR(11);
+
+CREATE VIEW 사원뷰 AS
+ SELECT 사번, 이름 FROM 사원
+ WHERE 성별 = 'M';
+
+SELECT DISTINCT 전공 FROM 학생;
+SELECT 학번 FROM 학생 WHERE 이름 LIKE '이%';
+
+SELECT 주소 FROM 학생 WHERE 주소 IS NOT NULL;
+
+SELECT * FROM 교수 WHERE 전공 IN('컴퓨터공학', '전자공학');
+
+SELECT 이름 FROM 고객 WHERE AGE BETWEEN 50 AND 59 , 성별 ='남';
+
+SELECT 이름, 과목, 성적 FROM 성적 DESC;
+
+SELECT A.책번호, A.책명, B.책번호, B.가격 
+FROM 도서 A LEFT OUTER JOIN 도서가격 B ON A.책번호 = B.책번호;
+
+INSERT INTO EMPLOYEE VALUES('홍길동', 24, 300);
+
+DELETE FROM EMPLOYEE WHERE 급여 <= 300 ;
+
+GRANT UPDATE ON 학생 TO 장길산; 
+
+SELET 과목이름, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수 FROM 성적 
+GROUP BY 과목이름 HAVING AVG(점수) >= 90;
+
+SELECT 학과, COUNT(학과) AS 학과별튜플수 
+FORM 학생 
+GROUP BY 학과 ;
+
+SELECT 과목, MIN(점수) AS 최소점수, MAX(점수) AS 최대점수 
+ FROM 성적
+ GROUP BY 과목, HAVING AVG(점수) >= 90;
+
+SELECT 부서명, AVG(급여)
+FROM 급여
+GROUP BY 부서;
+
+SELECT 부서, SUM(급여) AS 급여
+FROM 급여
+GROUP BY 부서, 직책 
+
+SELECT 이름
+FROM 학생
+GROUP BY 이름 HAVING AVG(성적) > 4.0;
