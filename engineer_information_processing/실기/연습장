@@ -107,3 +107,40 @@ GROUP BY 부서, 직책
 SELECT 이름
 FROM 학생
 GROUP BY 이름 HAVING AVG(성적) > 4.0;
+
+트리거 : 데이터베이스 시스템에서 삽입,갱신,삭제 등의 이벤트가 발생할때마다 관련 작업이 자동으로 수행되는 절차형 sql 
+프로시저 : 일련의 쿼리들을 마치 하나의 함수처럼 실행하기 위한 쿼리의 집합 
+사용자 정의함수 : 일련의 sql 처리를 수행하고, 수행 결자과를 단일 값으로 반환할 수 있는 절차형 sql 
+옵티마이저 : sql을 빠르고 효율적으로 수행할 최적의 처리경로를 생성해주는 dbms 내부의 핵심엔진
+
+ALTER TABLE User ADD USER_ID VARCHAR2(15);
+ALTER TABLE User MODIFY User_NAME VARCHAR2(10);
+ALTER TABLE User RENAME COLUMN User_Password TO User_Pw;
+ALTER TABLE User DROP COLUMN User_Name;
+
+CREATE TABLE 사람 
+( 이름 VARCHAR(10),
+  생년월일 CHAR(8) NOT NULL);
+
+CREATE VIEW 학생뷰 AS 
+SELECT 학번, 이름 FROM 학생 WHERE 전공 ='전산';
+
+CREATE INDEX 학번인덱스 ON 학생(학번);
+
+CREATE TABLE 교수 
+( 교번 VARCHAR(10) PRIMARY KEY,
+  이름 VARCHAR(10),
+  임용일 VARCHAR(*) NOT NULL ) ;
+
+ALTER TABLE 성적 ADD 학점 VARCHAR($) NOT NULL; 
+
+SELECT 학번, 이름 FROM 학생 WHERE 학과 ='전산과';
+
+SELECT 부서, SUM(급여) AS 급여합계
+FROM 급여 
+GROUP BY 부서 
+HAVING SUM(급여) >= 6000;
+
+SELECT 이름, 과목, 학점
+FROM 성적
+ORDER BY 학점 DESC, 이름 ASC;
