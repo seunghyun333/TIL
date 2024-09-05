@@ -144,3 +144,26 @@ HAVING SUM(급여) >= 6000;
 SELECT 이름, 과목, 학점
 FROM 성적
 ORDER BY 학점 DESC, 이름 ASC;
+
+
+SELECT A.책번호, A.책명, B. 가격
+FROM 도서 A INNER JOIN 도서가격 B ON A.책번호 = B. 책번호 ;
+
+SELECT A.책번호 AS A.책번호, A.책명 AS A.책명, B.책번호 AS B.책번호, B.가격 AS B.가격 
+FROM 도서 A FULL OUTER JOIN 도서가격 B ON A.책번호 = B. 책번호 ;
+
+SELECT MAX(가격) AS 가격 
+FROM 도서가격 
+WHERE 책번호 IN (SELECT 책번호 FROM 도서 WEHRE 책명 ='자료구조');
+
+INSERT INTO 학생 VALUES(3000, '장길산', 3, '수학');
+
+UPDATE 학생 SET 수강과목 = '영어' WHERE  학번 = 1000;
+
+DELETE FROM 학생 WHERE 학번 = 3000;
+
+GRANT SELECT ON 사원 TO 홍길동 ;
+
+REVOKE UPATE ON 학생 FROM 장길산;
+
+21
